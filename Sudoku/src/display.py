@@ -1,6 +1,7 @@
 import numpy as np 
 
-from data import easy
+from Sudoku.Sudoku.src.data import easy
+# from data import easy
 
 def pretty_row(arr):
     assert arr.shape == (9,), 'not valid Sudoku row'
@@ -19,4 +20,4 @@ def pretty_display(grid):
         pretty_row(row)
         print('\r')
 
-c = pretty_display(easy)
+# c = pretty_display(easy)
