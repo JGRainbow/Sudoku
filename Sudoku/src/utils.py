@@ -1,9 +1,3 @@
-# from board import Board
-from Sudoku.Sudoku.src.board import Board
-from Sudoku.Sudoku.src.data import easy
-from Sudoku.Sudoku.src.display import pretty_display
-# from data import easy
-# from display import pretty_display
 
 def find_next_empty_cell(grid):
     """
@@ -50,8 +44,14 @@ def check_local_square(grid, num, i, j):
     assert i < len(grid), 'Row is out of grid!'
     assert j < len(grid[0]), 'Column is out of grid!'    
 
+    MINI_GRID_SIZE = 3
 
-pretty_display(easy)
-t = find_next_empty_cell(easy)
-print(t)
+    top_left_row = MINI_GRID_SIZE * (i // MINI_GRID_SIZE)
+    top_left_col = MINI_GRID_SIZE * (j // MINI_GRID_SIZE)
 
+    found = False
+    for row in range(top_left_row, top_left_row + MINI_GRID_SIZE):
+        for col in range(top_left_col, top_left_col + MINI_GRID_SIZE):
+            if grid[row][col] == num and (row, col) != (i, j):
+                found = True 
+    return found

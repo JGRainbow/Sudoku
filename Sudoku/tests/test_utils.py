@@ -27,3 +27,23 @@ class TestUtils:
 
         # Assert
         assert result == expected 
+
+    @pytest.mark.parametrize(*test_data.test_check_col_data())
+    def test_check_col(self, grid, num, i, j, expected):
+        # Arrange
+
+        # Act
+        result = check_col(grid, num, i, j)
+
+        # Assert
+        assert result == expected
+
+    @pytest.mark.parametrize(*test_data.test_check_local_square_data())
+    def test_check_local_square(self, grid, num, i, j, expected):
+        # Arrange
+
+        # Act
+        result = check_local_square(grid, num, i, j)
+
+        # Assert 
+        assert result == expected

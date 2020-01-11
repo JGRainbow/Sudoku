@@ -1,5 +1,4 @@
-# from data import easy
-from Sudoku.Sudoku.src.data import easy
+from data import easy
 
 class Board:
     
