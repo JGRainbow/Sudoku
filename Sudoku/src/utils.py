@@ -1,3 +1,4 @@
+from data import easy
 
 def find_next_empty_cell(grid):
     """
@@ -55,3 +56,15 @@ def check_local_square(grid, num, i, j):
             if grid[row][col] == num and (row, col) != (i, j):
                 found = True 
     return found
+
+def check_position_is_legal(grid, num, i, j):
+    """
+    Checks to see if num is already present in the row / col / mini-square defined by (i, j) position of input
+    """
+    args = (grid, num, i, j)
+    return (not check_row(*args)) and (not check_col(*args)) and (not check_local_square(*args))
+
+# easy[1][1] = 1
+# res = check_row(easy, 1, 0, 0)
+# res = check_position_is_legal(easy, 1, 0, 0)
+# print(res)
