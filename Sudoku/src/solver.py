@@ -1,5 +1,5 @@
 from board import Board
-from data import easy
+from data import easy, intermediate
 from utils import find_next_empty_cell, check_position_is_legal
 from decorators import timer
 
@@ -31,7 +31,7 @@ class Solver:
         # 2. Find first missing entry
         # 3. Try all possibilities until legal move is found
         # 4. If no legal move, backtrack
-        # 5. If legal move, then update board and see if it is solved
+        # 5. If legal move, then update board and see if it is solvable
         """
         cell = find_next_empty_cell(self.board.grid)
         if not cell:
@@ -50,7 +50,7 @@ class Solver:
         return False           
 
 def main():
-    grid = easy 
+    grid = intermediate
     solver = Solver(grid)
     solver.solve()
 
