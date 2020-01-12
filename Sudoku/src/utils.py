@@ -64,7 +64,3 @@ def check_position_is_legal(grid, num, i, j):
     args = (grid, num, i, j)
     return (not check_row(*args)) and (not check_col(*args)) and (not check_local_square(*args))
 
-# easy[1][1] = 1
-# res = check_row(easy, 1, 0, 0)
-# res = check_position_is_legal(easy, 1, 0, 0)
-# print(res)

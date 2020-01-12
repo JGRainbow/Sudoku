@@ -1,6 +1,6 @@
 from board import Board
 from data import easy, intermediate
-from utils import find_next_empty_cell, check_position_is_legal
+from utils import find_next_empty_cell
 from decorators import timer
 
 class Solver:
@@ -11,7 +11,7 @@ class Solver:
 
     def __init__(self, grid):
         self.board = Board(grid)
-        self.size = self.board.size
+        self.size = self.board.grid.shape[0]
 
     @timer
     def solve(self):
@@ -38,7 +38,7 @@ class Solver:
             return True
 
         for val in range(1, self.size + 1):
-            legal = check_position_is_legal(self.board.grid, val, cell[0], cell[1])
+            legal = self.board.is_legal_move(val, *cell)
             if legal:
                 self.board.grid[cell[0]][cell[1]] = val 
 
@@ -50,7 +50,7 @@ class Solver:
         return False           
 
 def main():
-    grid = intermediate
+    grid = easy
     solver = Solver(grid)
     solver.solve()
 
