@@ -3,7 +3,7 @@ from data import easy
 def find_next_empty_cell(grid):
     """
     Finds the (row, col) of the next available unlabelled cell
-    Returs None if grid is complete
+    Returns None if grid is complete
     """
     for i, row in enumerate(grid):
         for j, col in enumerate(row):
