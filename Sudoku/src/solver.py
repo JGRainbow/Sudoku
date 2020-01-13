@@ -1,3 +1,5 @@
+import numpy as np
+
 from board import Board
 from data import easy, intermediate
 from utils import find_next_empty_cell
@@ -47,12 +49,40 @@ class Solver:
 
                 self.board.grid[cell[0]][cell[1]] = 0
 
-        return False           
+        return False  
+
+
+    def greedy_backtracker(self):
+        """
+        Adapts basic backtracker by targeting cells with the current least \
+            number of legal possibilities
+        TODO: Something is broken (allowing illegal moves)
+        """
+        cell = self.board.find_best_empty_cell()
+        print(cell)
+        if not cell:
+            return True
+
+        legal_moves = np.where(self.board.grid_possibilities[cell[0]][cell[1]] == 1)[0]
+        for val in legal_moves:
+            print(f'Attempting Val: {val}')
+            self.board.update_grid(val, *cell)
+         
+            if self.greedy_backtracker():
+                print(f'placing {val} in position {cell}')
+                return True
+            
+            self.board.revert_grid(val, *cell)
+
+        return False
 
 def main():
-    grid = easy
+    grid = intermediate
     solver = Solver(grid)
-    solver.solve()
+    # solver.solve()
+    solver.greedy_backtracker()
+
+    solver.board.display_board()
 
 if __name__ == '__main__':
     main()
