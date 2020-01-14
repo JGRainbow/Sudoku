@@ -114,14 +114,17 @@ class Board:
         self.grid[i][j] = 0
         possibilities = self.find_possibilities(i, j)
         self.grid_possibilities[i][j] = possibilities
-        self.num_possibilities[i][j] = len(possibilities)
+        self.num_possibilities[i][j] = len(possibilities) # self.find_possibilities(i, j)
 
         affected_cells = find_affected_cells(i, j)
         for cell in affected_cells:
             legal = check_position_is_legal(self.grid, num, i, j)
             if legal:
                 self.grid_possibilities[cell[0]][cell[1]][num] = 1
-        
+            
+            # We shouldn't need this...
+            else: 
+                self.grid_possibilities[cell[0]][cell[1]][num] = 0
 
     def find_possibilities(self, i, j):
         """
@@ -147,6 +150,7 @@ class Board:
                 print('---------------------')
             pretty_row(row)
             print('\r')
+        print('\n\n')
 
 
 def main():

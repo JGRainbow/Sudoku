@@ -57,6 +57,7 @@ class Solver:
         Adapts basic backtracker by targeting cells with the current least \
             number of legal possibilities
         TODO: Something is broken (allowing illegal moves)
+            problem possibly find_best_empty_cell (update and revert seem to work)
         """
         cell = self.board.find_best_empty_cell()
         print(cell)
@@ -65,19 +66,20 @@ class Solver:
 
         legal_moves = np.where(self.board.grid_possibilities[cell[0]][cell[1]] == 1)[0]
         for val in legal_moves:
-            print(f'Attempting Val: {val}')
             self.board.update_grid(val, *cell)
          
             if self.greedy_backtracker():
                 print(f'placing {val} in position {cell}')
+                self.board.display_board()
                 return True
             
             self.board.revert_grid(val, *cell)
 
         return False
 
+
 def main():
-    grid = intermediate
+    grid = easy
     solver = Solver(grid)
     # solver.solve()
     solver.greedy_backtracker()
