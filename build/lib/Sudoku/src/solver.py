@@ -1,9 +1,9 @@
 import numpy as np
 
-from Sudoku.src.board import Board
-from Sudoku.src.data import easy, intermediate
-from Sudoku.src.utils import find_next_empty_cell
-from Sudoku.src.decorators import timer
+from board import Board
+from data import easy, intermediate
+from utils import find_next_empty_cell
+from decorators import timer
 
 class Solver:
 

@@ -1,7 +1,7 @@
 import numpy as np
 
-from Sudoku.Sudoku.src.data import easy, intermediate
-from Sudoku.Sudoku.src.utils import (check_col, 
+from data import easy, intermediate
+from utils import (check_col, 
                     check_row, 
                     check_local_square,
                     find_affected_cells,
