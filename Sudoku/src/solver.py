@@ -64,6 +64,7 @@ class Solver:
         if not cell:
             return True
 
+        print(self.board.num_possibilities)
         legal_moves = np.where(self.board.grid_possibilities[cell[0]][cell[1]] == 1)[0] + 1 # index to value
         print(f'legal moves: {legal_moves}')
         if not len(legal_moves):

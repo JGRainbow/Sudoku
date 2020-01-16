@@ -35,7 +35,7 @@ class Board:
         """
         self.grid_possibilities = None
         self.num_possibilities = None
-        self.seed = Board.SEED
+        self._seed = Board.SEED
         self.initialise_possibilities() # Don't really want to have to do this for nongreedy methods
 
 
@@ -88,7 +88,7 @@ class Board:
         TODO:
         This function needs testing
         """
-        np.random.seed(self.seed)
+        np.random.seed(self._seed)
         min_num_possibilities = np.min(self.num_possibilities)
         if min_num_possibilities == self.size:
             return None
@@ -125,7 +125,7 @@ class Board:
         self.grid[i][j] = 0
         possibilities = self.find_possibilities(i, j)
         self.grid_possibilities[i][j] = possibilities
-        self.num_possibilities[i][j] = len(possibilities) # self.find_possibilities(i, j)
+        self.num_possibilities[i][j] = np.sum(self.find_possibilities(i, j)) # len(possibilities) # self.find_possibilities(i, j)
 
         affected_cells = find_affected_cells(i, j)
         for cell in affected_cells:
@@ -133,7 +133,8 @@ class Board:
             if legal:
                 self.grid_possibilities[cell[0]][cell[1]][num - 1] = 1
                 # need to increment num_possibilities here
-                self.num_possibilities[cell[0]][cell[1]] += 1
+                # self.num_possibilities[cell[0]][cell[1]] += 1
+                self.num_possibilities[cell[0]][cell[1]] = np.sum(self.find_possibilities(*cell))
             
             # We shouldn't need this...
             else: 
