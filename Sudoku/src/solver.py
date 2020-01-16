@@ -60,13 +60,18 @@ class Solver:
             problem possibly find_best_empty_cell (update and revert seem to work)
         """
         cell = self.board.find_best_empty_cell()
-        print(cell)
+        print(f'best cell: {cell}')
         if not cell:
             return True
 
-        legal_moves = np.where(self.board.grid_possibilities[cell[0]][cell[1]] == 1)[0]
+        legal_moves = np.where(self.board.grid_possibilities[cell[0]][cell[1]] == 1)[0] + 1 # index to value
+        print(f'legal moves: {legal_moves}')
+        if not len(legal_moves):
+            print('No legal moves!')
         for val in legal_moves:
+            print(f'val: {val}')
             self.board.update_grid(val, *cell)
+            self.board.display_board()
          
             if self.greedy_backtracker():
                 print(f'placing {val} in position {cell}')
